@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Outfit', sans-serif;
+    background-color: #FAFAFA;
+    color: #111827;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary text-primary-foreground font-semibold text-sm transition-all hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-lg;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-2xl border border-border bg-transparent text-foreground font-semibold text-sm transition-all hover:bg-surface hover:-translate-y-0.5;
+  }
+  .eyebrow {
+    @apply inline-block font-mono text-[11px] uppercase tracking-[0.25em] text-primary/70 font-semibold;
+  }
+  .heading-xl {
+    @apply font-display text-5xl md:text-7xl font-extrabold leading-[1.05] tracking-tight;
+  }
+  .heading-lg {
+    @apply font-display text-3xl md:text-5xl font-extrabold leading-[1.1] tracking-tight;
+  }
+  .heading-md {
+    @apply font-display text-2xl md:text-3xl font-bold leading-snug;
+  }
+  .glass {
+    @apply bg-white/60 backdrop-blur-xl border border-white/40 shadow-lg;
+  }
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-xl border border-white/10;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: 'Outfit', 'Poppins', sans-serif; }
+  .font-mono-custom { font-family: 'JetBrains Mono', monospace; }
+  .animate-blob {
+    animation: blob 12s ease-in-out infinite;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .shadow-glow {
+    box-shadow: 0 0 60px -10px rgba(56, 189, 248, 0.4);
+  }
+  .shadow-card {
+    box-shadow: 0 4px 40px -8px rgba(0,0,0,0.12);
+  }
+}
+
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -20px) scale(1.05); }
+  66% { transform: translate(-15px, 10px) scale(0.97); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+}
+
+html,
+body{
+overflow-x:hidden;
+}
+
+*{
+min-width:0;
+}
+
+iframe{
+pointer-events:none;
+}
+
+iframe:hover{
+pointer-events:auto;
+}
