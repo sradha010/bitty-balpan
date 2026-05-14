@@ -23,6 +23,13 @@ import prepImg from "@/assets/slide4.png";
 import preNurseryImg from "@/assets/baby pre-school.png";
 import daycareImg from "@/assets/day_care.png";
 
+/* ─── Award images ───────────────────────────────────────────── */
+import award1 from "@/assets/award1.png";
+import award2 from "@/assets/award2.png";
+import award3 from "@/assets/award3.png";
+import award4 from "@/assets/award4.png";
+import award5 from "@/assets/award5.png";
+
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
@@ -64,11 +71,10 @@ type MediaItem = {
 type AwardItem = {
   id: number;
   title: string;
+  img: string;
   recipient: string;
   presentedBy: string;
   year?: string;
-  color: string;
-  icon: string;
 };
 
 /* ─── Data ────────────────────────────────────────────────────── */
@@ -91,54 +97,12 @@ const GALLERY_ITEMS: GalleryItem[] = [
 ];
 
 const VIDEO_ITEMS: VideoItem[] = [
-  {
-    id: 1,
-    thumb: campusImg,
-    title: "Campus Tour",
-    duration: "3:24",
-    youtubeId: "w2vEximWJlo",
-    description: "Take a virtual tour of our vibrant campus and facilities.",
-  },
-  {
-    id: 2,
-    thumb: nurseryImg,
-    title: "Happy Independence Day Celebration",
-    duration: "5:10",
-    youtubeId: "xM2Imquly9Y",
-    description: "Highlights from our Independence Day celebrations in 2020.",
-  },
-  {
-    id: 3,
-    thumb: prepImg,
-    title: "Rakhi Making Competition",
-    duration: "12:45",
-    youtubeId: "G3KZ4AZO2Po",
-    description: "Creative Rakhi making by our little artists.",
-  },
-  {
-    id: 4,
-    thumb: preNurseryImg,
-    title: "Creative Activities",
-    duration: "7:32",
-    youtubeId: "lHMV5MrCoVg",
-    description: "Creative learning and fun activities.",
-  },
-  {
-    id: 5,
-    thumb: parentChildImg,
-    title: "Parent Orientation Program",
-    duration: "4:18",
-    youtubeId: "CaJBAR6zde0",
-    description: "Parents and school engagement program.",
-  },
-  {
-    id: 6,
-    thumb: daycareImg,
-    title: "BalUtsav Balpan Mela",
-    duration: "6:00",
-    youtubeId: "WYFKcxJxN9M",
-    description: "Fun-filled moments from our annual BalUtsav Balpan Mela.",
-  },
+  { id: 1, thumb: campusImg, title: "Campus Tour — Bitty Balpan", duration: "3:24", description: "A complete walkthrough of our facilities, classrooms, and play areas." },
+  { id: 2, thumb: nurseryImg, title: "A Day in Our Nursery", duration: "5:10", description: "Follow our little ones through a joyful day of learning and play." },
+  { id: 3, thumb: prepImg, title: "PRATIBHA — Talent Contest 2023", duration: "12:45", description: "Highlights from our annual talent showcase featuring our youngest stars." },
+  { id: 4, thumb: preNurseryImg, title: "Fancy Dress Competition", duration: "7:32", description: "Children dressed as fruits and vegetables — pure joy and creativity." },
+  { id: 5, thumb: parentChildImg, title: "Parent Orientation Day", duration: "4:18", description: "Our annual parent orientation introducing the BITTY BALPAN philosophy." },
+  { id: 6, thumb: daycareImg, title: "Daycare Program Overview", duration: "6:00", description: "Everything parents need to know about our holistic daycare services." },
 ];
 
 const MEDIA_ITEMS: MediaItem[] = [
@@ -150,48 +114,42 @@ const MEDIA_ITEMS: MediaItem[] = [
   { id: 6, src: campusImg, outlet: "News18", headline: "Award-Winning Curriculum: Inside BITTY BALPAN's Classroom", date: "Apr 2023", type: "tv" },
 ];
 
-/* ─── REAL Awards Data ────────────────────────────────────────── */
 const AWARDS: AwardItem[] = [
   {
     id: 1,
     title: "Karmyogi Samman",
+    img: award1,
     recipient: "Sri Ranjeet Kumar, Chairman — BITT Group of Institutions",
     presentedBy: "Sri Raghubar Das, Hon'ble Chief Minister of Jharkhand",
-    color: "from-amber-400 to-yellow-300",
-    icon: "🏅",
   },
   {
     id: 2,
     title: "Guru-Siksha Samman",
+    img: award2,
     recipient: "Sri Ranjeet Kumar, Chairman — BITT Group of Institutions",
     presentedBy: "Smt. Neera Yadav, Hon'ble Minister, Govt. of Jharkhand",
-    color: "from-emerald-400 to-green-300",
-    icon: "🎓",
   },
   {
     id: 3,
     title: "Justice P.N. Bhagwati Appreciation Award",
+    img: award3,
     recipient: "Sri Ranjeet Kumar, Chairman — BITT Group of Institutions",
     presentedBy: "Hon'ble Mr. Justice Prakash Tatia, for exemplary contribution towards education",
-    color: "from-sky-400 to-blue-300",
-    icon: "⚖️",
   },
   {
     id: 4,
-    title: "Edupreneur of the Year — 2017",
+    title: "Edupreneur of the Year",
+    img: award4,
     recipient: "Shri Ranjeet Kumar, Chairman — BITT Group of Institutions",
     presentedBy: "Dr. Manpreet Singh Manna, Director (AICTE) & Shri JP Yadav, Hon'ble Member of Parliament",
     year: "2017",
-    color: "from-violet-400 to-purple-300",
-    icon: "🌟",
   },
   {
     id: 5,
     title: "Indian Achievers Award",
+    img: award5,
     recipient: "Sri Ranjeet Kumar, Chairman — BITT Group of Institutions",
     presentedBy: "Shri Ram Das Athawale, Hon'ble Minister, Social Justice & Empowerment",
-    color: "from-rose-400 to-pink-300",
-    icon: "🏆",
   },
 ];
 
@@ -251,21 +209,28 @@ function Lightbox({
         className="fixed inset-0 z-[100] bg-black/92 backdrop-blur-md flex items-center justify-center p-4"
         onClick={onClose}
       >
+        {/* Close */}
         <button
           className="absolute top-5 right-5 size-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 grid place-items-center text-white transition"
           onClick={onClose}
         >
           <X className="size-5" />
         </button>
+
+        {/* Counter */}
         <div className="absolute top-5 left-5 px-4 py-2 rounded-full bg-white/10 border border-white/15 text-white text-xs font-mono">
           {currentIndex + 1} / {items.length}
         </div>
+
+        {/* Prev */}
         <button
           className="absolute left-4 md:left-8 size-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 grid place-items-center text-white transition z-10"
           onClick={(e) => { e.stopPropagation(); onPrev(); }}
         >
           <ChevronLeft className="size-6" />
         </button>
+
+        {/* Image */}
         <motion.div
           key={item.id}
           initial={{ opacity: 0, scale: 0.95 }}
@@ -286,17 +251,21 @@ function Lightbox({
             </div>
           )}
         </motion.div>
+
+        {/* Next */}
         <button
           className="absolute right-4 md:right-8 size-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 grid place-items-center text-white transition z-10"
           onClick={(e) => { e.stopPropagation(); onNext(); }}
         >
           <ChevronRight className="size-6" />
         </button>
+
+        {/* Thumbnails strip */}
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-[80vw] px-4 py-2">
           {items.map((it, i) => (
             <button
               key={it.id}
-              onClick={(e) => { e.stopPropagation(); }}
+              onClick={(e) => { e.stopPropagation(); /* handled by parent */ }}
               className={`size-10 rounded-lg overflow-hidden shrink-0 border-2 transition ${i === currentIndex ? "border-white scale-110" : "border-white/20 opacity-50 hover:opacity-80"}`}
             >
               <img src={it.src} alt={it.alt} className="w-full h-full object-cover" />
@@ -309,22 +278,11 @@ function Lightbox({
 }
 
 /* ─── Video Popup ─────────────────────────────────────────────── */
-function VideoPopup({
-  video,
-  onClose,
-}: {
-  video: VideoItem;
-  onClose: () => void;
-}) {
+function VideoPopup({ video, onClose }: { video: VideoItem; onClose: () => void }) {
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", handler);
-
-    return () =>
-      window.removeEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
   }, [onClose]);
 
   return (
@@ -333,45 +291,38 @@ function VideoPopup({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+        className="fixed inset-0 z-[100] bg-black/92 backdrop-blur-md flex items-center justify-center p-4"
         onClick={onClose}
       >
         <button
-          className="absolute top-5 right-5 size-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 grid place-items-center text-white"
+          className="absolute top-5 right-5 size-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 grid place-items-center text-white transition"
           onClick={onClose}
         >
           <X className="size-5" />
         </button>
-
         <motion.div
-          initial={{ scale: 0.95 }}
-          animate={{ scale: 1 }}
-          exit={{ scale: 0.95 }}
-          className="w-full max-w-5xl"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 24 }}
+          className="w-full max-w-3xl"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black">
-
-            <iframe
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`}
-              title={video.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
-
+          {/* Simulated video player */}
+          <div className="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl">
+            <img src={video.thumb} alt={video.title} className="w-full h-full object-cover opacity-40" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+              <div className="size-20 rounded-full bg-white/20 border-2 border-white/40 grid place-items-center backdrop-blur-sm">
+                <Play className="size-8 text-white fill-white ml-1" />
+              </div>
+              <p className="text-white/60 text-sm font-mono">Connect YouTube to enable video playback</p>
+            </div>
           </div>
-
-          <div className="mt-5">
-            <h3 className="text-white font-display font-bold text-xl">
-              {video.title}
-            </h3>
-
-            <p className="text-white/60 mt-2 text-sm">
-              {video.description}
-            </p>
+          <div className="mt-5 flex items-start justify-between gap-4">
+            <div>
+              <h3 className="font-display font-bold text-white text-xl">{video.title}</h3>
+              <p className="text-white/55 text-sm mt-1">{video.description}</p>
+            </div>
+            <span className="shrink-0 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/70 text-xs font-mono">{video.duration}</span>
           </div>
         </motion.div>
       </motion.div>
@@ -452,6 +403,7 @@ function ImageGallerySection() {
   return (
     <section id="images" className="py-24 px-6 scroll-mt-20">
       <div className="max-w-7xl mx-auto">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -466,6 +418,7 @@ function ImageGallerySection() {
               <span className="text-coral italic">campus & classrooms.</span>
             </h2>
           </div>
+          {/* Category filter */}
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map((cat) => (
               <button
@@ -483,6 +436,7 @@ function ImageGallerySection() {
           </div>
         </motion.div>
 
+        {/* Masonry grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[200px] gap-4">
           <AnimatePresence mode="popLayout">
             {filtered.map((item, index) => (
@@ -504,9 +458,11 @@ function ImageGallerySection() {
                   loading="lazy"
                   className="w-full h-full object-cover transition duration-700 group-hover:scale-110"
                 />
+                {/* Category badge */}
                 <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-wider opacity-0 group-hover:opacity-100 transition">
                   {item.category}
                 </div>
+                {/* Hover overlay */}
                 <AnimatePresence>
                   {hoveredId === item.id && (
                     <motion.div
@@ -527,11 +483,13 @@ function ImageGallerySection() {
           </AnimatePresence>
         </div>
 
+        {/* Count */}
         <p className="text-center text-xs font-mono text-muted-foreground mt-6 uppercase tracking-widest">
           {filtered.length} of {GALLERY_ITEMS.length} images — {activeCategory}
         </p>
       </div>
 
+      {/* Lightbox */}
       {lightboxIndex !== null && (
         <Lightbox
           items={filtered}
@@ -571,6 +529,7 @@ function VideoGallerySection() {
           </p>
         </motion.div>
 
+        {/* Featured video (first) */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -581,6 +540,7 @@ function VideoGallerySection() {
         >
           <img src={VIDEO_ITEMS[0].thumb} alt={VIDEO_ITEMS[0].title} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+          {/* Play button */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="size-20 rounded-full bg-white/20 border-2 border-white/40 grid place-items-center backdrop-blur-sm group-hover:scale-110 transition duration-300">
               <Play className="size-8 text-white fill-white ml-1" />
@@ -596,6 +556,7 @@ function VideoGallerySection() {
           </div>
         </motion.div>
 
+        {/* Video grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {VIDEO_ITEMS.slice(1).map((video, i) => (
             <motion.div
@@ -666,6 +627,7 @@ function MediaGallerySection() {
           </p>
         </motion.div>
 
+        {/* Media type legend */}
         <div className="flex gap-3 justify-center mb-10">
           {[
             { type: "print", label: "Print Media" },
@@ -678,6 +640,7 @@ function MediaGallerySection() {
           ))}
         </div>
 
+        {/* Masonry-style media grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {MEDIA_ITEMS.map((item, i) => (
             <motion.div
@@ -690,6 +653,7 @@ function MediaGallerySection() {
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
+              {/* Thumbnail */}
               <div className="relative h-44 overflow-hidden">
                 <img
                   src={item.src}
@@ -701,6 +665,7 @@ function MediaGallerySection() {
                 <div className={`absolute top-3 left-3 px-2.5 py-1 rounded-full border text-[10px] font-mono uppercase tracking-wider ${mediaTypeColors[item.type]}`}>
                   {item.type}
                 </div>
+                {/* Hover: external link icon */}
                 <AnimatePresence>
                   {hoveredId === item.id && (
                     <motion.div
@@ -714,6 +679,8 @@ function MediaGallerySection() {
                   )}
                 </AnimatePresence>
               </div>
+
+              {/* Content */}
               <div className="p-5">
                 <div className="flex items-center justify-between mb-3">
                   <span className="font-display font-bold text-primary text-sm">{item.outlet}</span>
@@ -730,19 +697,17 @@ function MediaGallerySection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SECTION 4 — AWARDS & RECOGNITIONS  (real data, updated layout)
+   SECTION 4 — AWARDS & RECOGNITIONS
    ═══════════════════════════════════════════════════════════════ */
 function AwardsSection() {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
     <section id="awards" className="py-24 px-6 bg-primary text-white overflow-hidden relative scroll-mt-20">
-      {/* Decorative blobs */}
       <div className="absolute -top-40 -right-40 size-[600px] rounded-full bg-sun/10 blur-[130px] pointer-events-none" />
       <div className="absolute -bottom-32 -left-20 size-[400px] rounded-full bg-coral/10 blur-[100px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -755,13 +720,12 @@ function AwardsSection() {
             Awards & Recognitions
           </span>
           <h2 className="heading-lg mt-2 max-w-3xl mx-auto">
-            Honoured by leaders,{" "}
-            <span className="text-sun italic">trusted by families.</span>
+            Excellence recognized by{" "}
+            <span className="text-sun italic">industry leaders.</span>
           </h2>
-          <p className="mt-5 text-white/60 max-w-xl mx-auto text-sm leading-relaxed">
-            Sri Ranjeet Kumar, Chairman of BITT Group of Institutions, has been recognised by
-            distinguished dignitaries across government and judiciary for his lifelong contribution
-            to education.
+          <p className="mt-5 text-white/60 max-w-lg mx-auto text-sm leading-relaxed">
+            Over the years, BITTY BALPAN has been honored by national education bodies, industry
+            organizations and community institutions.
           </p>
         </motion.div>
 
@@ -776,68 +740,49 @@ function AwardsSection() {
               transition={{ delay: i * 0.1, duration: 0.7 }}
               onMouseEnter={() => setHoveredId(award.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className="relative group rounded-3xl overflow-hidden border border-white/10 hover:border-white/30 hover:-translate-y-1.5 transition duration-300 cursor-default"
+              className="relative group rounded-3xl overflow-hidden border border-white/10 hover:border-white/30 hover:-translate-y-1 transition duration-300 cursor-default bg-white/5 backdrop-blur-sm"
             >
-              {/* Gradient header band */}
-              <div className={`bg-gradient-to-br ${award.color} px-7 pt-7 pb-5 flex items-start justify-between gap-4`}>
-                <div>
-                  <span className="text-4xl leading-none">{award.icon}</span>
-                  {award.year && (
-                    <span className="mt-3 inline-block px-3 py-1 rounded-full bg-black/15 text-black/60 text-xs font-mono font-bold">
-                      {award.year}
-                    </span>
-                  )}
-                </div>
-                {/* Decorative shimmer on hover */}
-                <AnimatePresence>
-                  {hoveredId === award.id && (
-                    <motion.div
-                      initial={{ opacity: 0, x: 10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 10 }}
-                      className="size-8 rounded-full bg-black/10 grid place-items-center shrink-0"
-                    >
-                      <Award className="size-4 text-black/40" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+              {/* Award photo — full bleed, fixed height */}
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={award.img}
+                  alt={award.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700"
+                />
+                {/* Subtle dark scrim so text below reads cleanly */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                {/* Year badge — only if present */}
+                {award.year && (
+                  <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm border border-white/20 text-white text-[10px] font-mono font-bold tracking-widest">
+                    {award.year}
+                  </div>
+                )}
               </div>
 
               {/* Content */}
-              <div className="bg-white/6 border-t border-white/8 p-6 backdrop-blur-sm space-y-3">
-                {/* Award title */}
-                <h3 className="font-display font-bold text-white text-base leading-snug">
+              <div className="p-6 border-t border-white/8">
+                <h3 className="font-display font-bold text-white text-base leading-snug mb-3">
                   {award.title}
                 </h3>
-
-                {/* Divider */}
-                <div className="h-px bg-white/10" />
-
-                {/* Recipient */}
-                <div>
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-1">
-                    Recipient
-                  </p>
-                  <p className="text-white/75 text-xs leading-relaxed">{award.recipient}</p>
-                </div>
-
-                {/* Presented by */}
-                <div>
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-1">
-                    Presented by
-                  </p>
-                  <p className="text-white/60 text-xs leading-relaxed">{award.presentedBy}</p>
-                </div>
+                <p className="text-white/70 text-xs leading-relaxed mb-2">
+                  <span className="text-white/40 uppercase tracking-wider font-mono text-[10px]">Recipient · </span>
+                  {award.recipient}
+                </p>
+                <p className="text-white/55 text-xs leading-relaxed">
+                  <span className="text-white/40 uppercase tracking-wider font-mono text-[10px]">Presented by · </span>
+                  {award.presentedBy}
+                </p>
               </div>
 
-              {/* Hover shimmer overlay */}
+              {/* Hover shimmer */}
               <AnimatePresence>
                 {hoveredId === award.id && (
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none rounded-3xl"
+                    className="absolute inset-0 bg-gradient-to-br from-white/6 to-transparent pointer-events-none"
                   />
                 )}
               </AnimatePresence>
@@ -845,7 +790,7 @@ function AwardsSection() {
           ))}
         </div>
 
-        {/* Trophy shelf banner */}
+        {/* Trophy shelf — decorative row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -855,25 +800,22 @@ function AwardsSection() {
         >
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,200,0,0.08),transparent_70%)]" />
           <div className="relative flex flex-col sm:flex-row items-center gap-8 text-center sm:text-left">
-            <div className="text-6xl shrink-0">🏆</div>
+            {/* Thumbnail strip of award photos */}
+            <div className="flex gap-2 shrink-0">
+              {AWARDS.map((a) => (
+                <div key={a.id} className="size-12 rounded-xl overflow-hidden border border-white/20">
+                  <img src={a.img} alt={a.title} className="w-full h-full object-cover" />
+                </div>
+              ))}
+            </div>
             <div>
               <h3 className="font-display font-bold text-2xl text-white mb-2">
-                5 prestigious awards from national dignitaries.
+                5 prestigious recognitions and counting.
               </h3>
               <p className="text-white/55 text-sm max-w-xl">
-                Received from the Chief Minister of Jharkhand, Cabinet Ministers, Members of Parliament,
-                and eminent Justices — each honour reflecting decades of dedication to quality education.
+                Awarded by Chief Ministers, Justices, and national ministers — every honour
+                reflects the trust placed in BITTY BALPAN and the BITT Group's 25-year legacy.
               </p>
-            </div>
-            {/* Coloured dot row */}
-            <div className="sm:ml-auto flex gap-1.5 shrink-0">
-              {AWARDS.map((a) => (
-                <div
-                  key={a.id}
-                  title={a.title}
-                  className={`size-3 rounded-full bg-gradient-to-br ${a.color} opacity-90`}
-                />
-              ))}
             </div>
           </div>
         </motion.div>
@@ -907,7 +849,10 @@ function CTABand() {
             feel the BITTY BALPAN warmth firsthand.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <a href="/contact" className="btn-primary inline-flex items-center gap-2">
+            <a
+              href="/contact"
+              className="btn-primary inline-flex items-center gap-2"
+            >
               Schedule a Visit <Star className="size-4" />
             </a>
             <a

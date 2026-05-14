@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { BackToTop } from "@/components/site/BackToTop";
 
 function NotFoundComponent() {
   return (
@@ -115,6 +116,7 @@ function RootComponent() {
         <Outlet />
       </main>
       <Footer />
+      <BackToTop />   
     </>
   );
 }
